@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 skiplistNode *slCreateNode(int level, double score) {
-	skiplistNode * sn = malloc(sizeof(*sn) + level*sizeof(struct skiplistLevel));
+	skiplistNode *sn = Malloc(sizeof(*sn) + level*sizeof(struct skiplistLevel));
 	sn->score = score;
 	return sn;
 }
@@ -12,7 +12,7 @@ skiplist *slCreate(void) {
 	int j;
 	skiplist *sl;
 
-	sl = malloc(sizeof(*sl));
+	sl = Malloc(sizeof(*sl));
 	sl->level = 1;
 	sl->length = 0;
 	sl->header = slCreateNode(SKIPLIST_MAXLEVEL, 0);
@@ -25,19 +25,19 @@ skiplist *slCreate(void) {
 }
 
 void slFreeNode(skiplistNode *sn) {
-	free(sn);
+	Free(sn);
 }
 
 void slFree(skiplist *sl) {
 	skiplistNode *node = sl->header->level[0].forward, *next;
 
-	free(sl->header);
+	Free(sl->header);
 	while(node) {
 		next = node->level[0].forward;
 		slFreeNode(node);
 		node = next;
 	}
-	free(sl);
+	Free(sl);
 }
 
 int slRandomLevel(void) {
@@ -163,7 +163,7 @@ int main() {
 
 	printf("=== Init Skip List ===\n");
 	skiplist * sl = slCreate();
-	for ( i = 0; i < count; i++) {
+	for (i = 0; i < count; i++) {
 		slInsert(sl,i);
 	}
 	printf("=== Print Skip List ===\n");

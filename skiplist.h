@@ -1,7 +1,10 @@
 #ifndef __SKIPLIST_H
 #define __SKIPLIST_H
 
-#define SKIPLIST_MAXLEVEL 8 
+#define SKIPLIST_MAXLEVEL 8
+
+#define Malloc malloc
+#define Free   free
 
 typedef struct skiplistNode {
 	double score;
